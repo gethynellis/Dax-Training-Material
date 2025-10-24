@@ -1,5 +1,110 @@
 
 
+## 🧩 Major Step: Creating the *DimTypeofEducation* Dimension Table
+
+### **Objective**
+
+Students will create a dimension table listing all unique education types found in the source file.
+They will learn to:
+
+* Import data from a flat file
+* Keep only the required column
+* Remove duplicates
+* Add a surrogate key
+
+---
+
+### **Step-by-Step Instructions**
+
+#### 🪜 Step 1: Load the CSV file
+
+1. In Power BI Desktop, go to **Home ▸ Get Data ▸ Text/CSV**.
+2. Browse to:
+
+   ```
+   C:\Users\GethynEllis\Downloads\Management_information_-_state-funded_schools_-_latest_inspections_as_at_30_June_2025.csv
+   ```
+3. Select **Transform Data** to open the file in Power Query.
+
+---
+
+#### 🪜 Step 2: Promote Headers
+
+* From the **Home** tab, choose **Use First Row as Headers**.
+  This makes the first row the column names instead of data.
+
+---
+
+#### 🪜 Step 3: Set Data Types
+
+* Confirm Power Query correctly assigns **Text** as the data type for `Type of education`.
+  (If not, select the column and choose **Transform ▸ Data Type ▸ Text**.)
+
+---
+
+#### 🪜 Step 4: Keep Only the Required Column
+
+* Select **Type of education**.
+* Go to **Home ▸ Remove Columns ▸ Remove Other Columns**.
+  *(Now only one column remains — this will form the basis of your dimension table.)*
+
+---
+
+#### 🪜 Step 5: Remove Duplicate Values
+
+* On the **Home** tab, click **Remove Rows ▸ Remove Duplicates**.
+  *(This ensures each education type appears once.)*
+
+---
+
+#### 🪜 Step 6: Add a Surrogate Key
+
+* Go to **Add Column ▸ Index Column ▸ From 1**.
+  *(This creates a unique key for each education type.)*
+
+---
+
+#### 🪜 Step 7: Rename the Index Column
+
+* Double-click the new **Index** column header and rename it to:
+
+  ```
+  KeyTypeofEducation
+  ```
+
+---
+
+#### 🪜 Step 8: Rename the Query
+
+* In the **Query Settings** pane (right-hand side), set **Name** to:
+
+  ```
+  DimTypeofEducation
+  ```
+
+---
+
+### ✅ **Result**
+
+You now have a dimension table with:
+
+| Type of education      | KeyTypeofEducation |
+| ---------------------- | ------------------ |
+| Voluntary Aided School | 1                  |
+| Community School       | 2                  |
+| Foundation School      | 3                  |
+| …                      | …                  |
+
+This table will later be joined to the **OfstedFact** table on the `Type of education` column.
+
+---
+
+### 🧠  Notes
+
+* The **Index Column** acts as a **surrogate key**, ensuring a stable numeric identifier for each category.
+* The dimension tables should have **unique, descriptive values** used in **relationships and slicers**.
+
+
 ## 🧭 Major Step: Building the Ofsted Fact Table in Power Query
 
 ### **Objective**
