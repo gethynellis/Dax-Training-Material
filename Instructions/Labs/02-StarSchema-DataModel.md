@@ -1,3 +1,102 @@
+## 🧭 **Introduction: Building a Dimensional Data Model in Power BI**
+
+### **Objective**
+
+In this lab, you will design and build a **dimensional data model** in Power BI using data from Ofsted school inspections.
+By the end of this exercise, you will have:
+
+✅ Imported and cleaned data from multiple sources
+✅ Created several **dimension tables** (lookup tables)
+✅ Built a central **Fact table**
+✅ Established **relationships** between these tables to form a **star schema model**
+
+This model will form the foundation for your DAX and Power BI reporting labs.
+
+---
+
+### **What You Will Do**
+
+In this lab, you will:
+
+1. **Download the required data files**
+2. **Create a new Power BI report** in Power BI Desktop
+3. Use **Power Query** to prepare and transform data into:
+
+   * Dimension tables:
+
+     * `DimOfstedRatings`
+     * `DimTypeofEducation`
+     * `DimSixthForm`
+     * `DimOfstedPhase`
+     * `DimLA` (Local Authority)
+     * `Dim Parliament` (Parliamentary Constituency)
+   * Fact table:
+
+     * `OfstedFact`
+4. **Build relationships** between your Fact and Dimension tables to complete the data model.
+5. **Validate your model** by creating a few simple DAX measures and visuals.
+
+---
+
+### **Before You Begin**
+
+#### 🪜 Step 1: Download the Files
+
+Download the following files to your local machine:
+
+1. **Ofsted Ratings Excel File**
+
+   ```
+   Offsted_Grade.xlsx
+   ```
+2. **Ofsted Inspections CSV File**
+
+   ```
+   Management_information_-_state-funded_schools_-_latest_inspections_as_at_30_June_2025.csv
+   ```
+
+> 💡 *If these files are provided by your instructor, save them to a known location such as your Desktop or Downloads folder.*
+
+Example file paths used in this lab:
+
+```
+C:\Users\<YourName>\Desktop\Offsted_Grade.xlsx
+C:\Users\<YourName>\Downloads\Management_information_-_state-funded_schools_-_latest_inspections_as_at_30_June_2025.csv
+```
+
+*(You may substitute your own folder paths if necessary.)*
+
+---
+
+#### 🪜 Step 2: Open Power BI Desktop and Create a New Report
+
+1. Launch **Power BI Desktop**.
+2. Select **File ▸ New** to start a blank report.
+3. Save the report as:
+
+   ```
+   Education - Data Modelling.pbix
+   ```
+4. You will use this report to create all your queries, dimension tables, and relationships during the lab.
+
+---
+
+### ✅ **Expected Outcome**
+
+At the end of this lab, you will have a complete **star schema model** ready for reporting and analysis, structured as follows:
+
+```
+               DimOfstedRatings
+                       │
+DimTypeofEducation ─ OfstedFact ─ DimOfstedPhase
+        │                   │
+    DimSixthForm          DimLA
+                              │
+                        Dim Parliament
+```
+
+You’ll then move on to **DAX labs**, where you’ll write measures and create visual reports using this model.
+
 
 
 ## 🧩 Major Step: Creating the *DimOfstedRatings* Dimension Table
