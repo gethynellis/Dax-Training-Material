@@ -1,7 +1,186 @@
-Excellent — the screenshot and M code correspond to the **DimLA** table (Local Authority dimension).
-Here’s the **Power Query UI version** of those steps — ready to use in your Power BI *Data Modelling Lab*.
+
+
+## 🧩 Major Step: Creating the *DimOfstedRatings* Dimension Table
+
+### **Objective**
+
+Students will create a dimension table from a small Excel file that defines the Ofsted grades used across inspections.
+They will import the data, promote headers, and apply the correct data types.
 
 ---
+
+### **Step-by-Step Instructions**
+
+#### 🪜 Step 1: Load the Excel File
+
+1. In Power BI Desktop, go to **Home ▸ Get Data ▸ Excel workbook**.
+2. Browse to the file:
+
+   ```
+   C:\Users\GethynEllis\Desktop\Offsted_Grade.xlsx
+   ```
+3. In the **Navigator** window, select the sheet named **Ofsted Ratings**.
+4. Click **Transform Data** to open it in Power Query.
+
+---
+
+#### 🪜 Step 2: Promote Headers
+
+* On the **Home** tab, select **Use First Row as Headers**.
+  *(This converts the first row into proper column names.)*
+
+---
+
+#### 🪜 Step 3: Verify and Set Data Types
+
+1. In the **Transform** tab, set:
+
+   * **Ofsted Grade Index** → **Whole Number**
+   * **Ofsted Grade Rating** → **Text**
+2. You can change data types using:
+
+   * Column header drop-down ▸ **Data Type ▸ Whole Number/Text**,
+     or
+   * **Transform ▸ Data Type ▸ …**
+
+---
+
+#### 🪜 Step 4: Rename the Query
+
+* In the **Query Settings** pane on the right, rename the query to:
+
+  ```
+  DimOfstedRatings
+  ```
+
+---
+
+### ✅ **Result**
+
+Your final table should look like this:
+
+| Ofsted Grade Index | Ofsted Grade Rating       |
+| ------------------ | ------------------------- |
+| 1                  | Outstanding               |
+| 2                  | Good                      |
+| 3                  | Requires Improvement      |
+| 4                  | Inadequate                |
+| 5                  | Unknown – Awaiting rating |
+| 6                  | Not Judged                |
+
+---
+
+### 🧠 Teaching Notes
+
+* This table is a **lookup (dimension)** used for decoding numeric grade values in the fact table.
+* The relationship between `OfstedFact[Overall effectiveness]` and `DimOfstedRatings[Ofsted Grade Index]` provides readable labels in visuals and slicers.
+* Reinforce to learners that *lookup dimensions* like this improve model clarity and maintain data consistency.
+
+---
+
+Would you like me to prepare the same Power Query step-by-step guide for **DimSixthForm** next?
+
+
+## 🧩 Major Step: Creating the *Dim Parliament* Dimension Table
+
+### **Objective**
+
+Students will create a **Parliamentary Constituency dimension** to support regional analysis within the Ofsted dataset.
+They’ll extract unique constituency names, remove duplicates, and assign a numeric surrogate key.
+
+---
+
+### **Step-by-Step Instructions**
+
+#### 🪜 Step 1: Load the CSV File
+
+1. In Power BI Desktop, go to **Home ▸ Get Data ▸ Text/CSV**.
+2. Browse to:
+
+   ```
+   C:\Users\GethynEllis\Downloads\Management_information_-_state-funded_schools_-_latest_inspections_as_at_30_June_2025.csv
+   ```
+3. Select **Transform Data** to open it in **Power Query**.
+
+---
+
+#### 🪜 Step 2: Promote Headers
+
+* On the **Home** tab, select **Use First Row as Headers** to ensure the first row becomes your column headers.
+
+---
+
+#### 🪜 Step 3: Set Data Type
+
+* Verify that the column **Parliamentary constituency** is set to **Text**.
+  *(If not, select the column ▸ go to **Transform ▸ Data Type ▸ Text**.)*
+
+---
+
+#### 🪜 Step 4: Keep Only the Relevant Column
+
+* Select the **Parliamentary constituency** column.
+* Choose **Home ▸ Remove Columns ▸ Remove Other Columns**.
+  *(This keeps only the column you need for the dimension.)*
+
+---
+
+#### 🪜 Step 5: Remove Duplicate Values
+
+* Go to **Home ▸ Remove Rows ▸ Remove Duplicates**.
+  *(This ensures each constituency name only appears once.)*
+
+---
+
+#### 🪜 Step 6: Add a Surrogate Key
+
+* Navigate to **Add Column ▸ Index Column ▸ From 1**.
+  *(This adds a numeric identifier for each constituency — your surrogate key.)*
+
+---
+
+#### 🪜 Step 7: Rename the Index Column
+
+* Double-click on the **Index** column header and rename it to:
+
+  ```
+  Key Parliament
+  ```
+
+---
+
+#### 🪜 Step 8: Rename the Query
+
+* In the **Query Settings** pane on the right, rename the query to:
+
+  ```
+  Dim Parliament
+  ```
+
+---
+
+### ✅ **Result**
+
+You’ll have a dimension table like this:
+
+| Parliamentary constituency       | Key Parliament |
+| -------------------------------- | -------------- |
+| Cities of London and Westminster | 1              |
+| Holborn and St Pancras           | 2              |
+| Hampstead and Highgate           | 3              |
+| Greenwich and Woolwich           | 4              |
+| …                                | …              |
+
+---
+
+### 🧠 Teaching Notes
+
+* This table can be related to the **OfstedFact** table using the *Parliamentary constituency* field.
+* Explain that **Parliamentary Constituency** represents a *political geography dimension* used in analysis.
+* The **Index column** serves as a **surrogate key**, which improves model performance and ensures relationships stay stable if constituency names change.
+
+
+
 
 ## 🧩 Lab: Creating the *DimLA* (Local Authority) Dimension Table
 
