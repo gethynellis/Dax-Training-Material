@@ -1,3 +1,108 @@
+Excellent — the screenshot and M code correspond to the **DimLA** table (Local Authority dimension).
+Here’s the **Power Query UI version** of those steps — ready to use in your Power BI *Data Modelling Lab*.
+
+---
+
+## 🧩 Lab: Creating the *DimLA* (Local Authority) Dimension Table
+
+### **Objective**
+
+Students will create a dimension table listing all **unique Local Authorities** from the Ofsted dataset.
+They will use Power Query to clean and prepare the data, remove duplicates, and generate a surrogate key for relationships.
+
+---
+
+### **Step-by-Step Instructions**
+
+#### 🪜 Step 1: Load the CSV file
+
+1. In Power BI Desktop, go to **Home ▸ Get Data ▸ Text/CSV**.
+2. Browse to:
+
+   ```
+   C:\Users\GethynEllis\Downloads\Management_information_-_state-funded_schools_-_latest_inspections_as_at_30_June_2025.csv
+   ```
+3. Click **Transform Data** to open Power Query.
+
+---
+
+#### 🪜 Step 2: Promote Headers
+
+* On the **Home** tab, click **Use First Row as Headers**.
+  *(This promotes the first row to column names.)*
+
+---
+
+#### 🪜 Step 3: Set Data Type
+
+* Verify the **Local authority** column is set to **Text**.
+  *(If not, select the column ▸ **Transform ▸ Data Type ▸ Text**.)*
+
+---
+
+#### 🪜 Step 4: Keep Only the Required Column
+
+* Select the **Local authority** column.
+* Then go to **Home ▸ Remove Columns ▸ Remove Other Columns**.
+  *(This keeps just the Local Authority column for your dimension.)*
+
+---
+
+#### 🪜 Step 5: Remove Duplicate Values
+
+* On the **Home** tab, choose **Remove Rows ▸ Remove Duplicates**.
+  *(This ensures each Local Authority appears only once.)*
+
+---
+
+#### 🪜 Step 6: Add a Surrogate Key
+
+* Go to **Add Column ▸ Index Column ▸ From 1**.
+  *(This adds a new numeric key starting at 1.)*
+
+---
+
+#### 🪜 Step 7: Rename the Index Column
+
+* Double-click the column header **Index** and rename it to:
+
+  ```
+  Key LA
+  ```
+
+---
+
+#### 🪜 Step 8: Rename the Query
+
+* In the **Query Settings** pane (right-hand side), rename the query to:
+
+  ```
+  DimLA
+  ```
+
+---
+
+### ✅ **Result**
+
+Your final dimension table should look similar to this:
+
+| Local authority | Key LA |
+| --------------- | ------ |
+| City of London  | 1      |
+| Camden          | 2      |
+| Greenwich       | 3      |
+| Hackney         | 4      |
+| …               | …      |
+
+---
+
+### 🧠 Teaching Notes
+
+* Explain that **Local Authority** is a *geographical dimension* useful for analysis by council area or region.
+* The **Index Column** acts as a *surrogate key*, allowing efficient relationships between the **OfstedFact** table and this **DimLA** table.
+* Encourage students to check for blanks or missing entries in the column profile panel (bottom of Power Query).
+
+
 
 
 ## 🧩 Major Step: Creating the *DimOfstedPhase* Dimension Table
