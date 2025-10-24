@@ -675,3 +675,105 @@ Number Inspections = COUNT(OfstedFact[Overall effectiveness])
 ```
 
 
+---
+
+## 🧭 Final Step: Building Relationships Between the Fact and Dimension Tables
+
+### **Objective**
+
+You will now connect your **OfstedFact** table to each of the dimension tables you created.
+This step turns your Power BI model into a true **star schema**, enabling easy slicing and filtering across multiple dimensions.
+
+---
+
+### **Step-by-Step Instructions**
+
+#### 🪜 Step 1: Open the Model View
+
+1. In **Power BI Desktop**, click on the **Model** icon (bottom-left side panel).
+   *(It looks like three connected boxes — this view shows how tables relate to each other.)*
+
+---
+
+#### 🪜 Step 2: Review the Existing Tables
+
+You should see the following tables listed:
+
+* **OfstedFact**
+* **DimOfstedRatings**
+* **DimTypeofEducation**
+* **DimSixthForm**
+* **DimOfstedPhase**
+* **DimLA**
+* **Dim Parliament**
+
+---
+
+#### 🪜 Step 3: Create Relationships
+
+Drag and connect the fields as follows:
+
+| From Table (Fact) | From Column               | To Table (Dimension) | To Column              |
+| ----------------- | ------------------------- | -------------------- | ---------------------- |
+| OfstedFact        | **Overall effectiveness** | DimOfstedRatings     | **Ofsted Grade Index** |
+| OfstedFact        | **KeyTypeofEducation**    | DimTypeofEducation   | **KeyTypeofEducation** |
+| OfstedFact        | **KeySixthForm**          | DimSixthForm         | **KeySixthForm**       |
+| OfstedFact        | **KeyOfstedPhase**        | DimOfstedPhase       | **KeyOfstedPhase**     |
+| OfstedFact        | **Key LA**                | DimLA                | **Key LA**             |
+| OfstedFact        | **Key Parliament**        | Dim Parliament       | **Key Parliament**     |
+
+*(Tip: If you renamed columns differently, match on your equivalent key fields.)*
+
+---
+
+#### 🪜 Step 4: Verify Relationship Settings
+
+For each relationship:
+
+1. Double-click the connecting line to open **Edit Relationship**.
+2. Confirm these settings:
+
+   * **Cardinality:** *Many-to-One (* *)*
+     *(Many Fact rows map to one Dimension row.)*
+   * **Cross filter direction:** *Single*
+     *(Filtering should flow from the Dimension to the Fact table.)*
+3. Click **OK** to confirm.
+
+---
+
+#### 🪜 Step 5: Check Relationship Arrows
+
+* Arrows should point **from each Dimension table → to OfstedFact**.
+* This ensures filters (for example, selecting “Outstanding”) correctly affect your visuals.
+
+---
+
+#### 🪜 Step 6: Save and Test the Model
+
+1. Save your Power BI file.
+2. Create a simple **report visual**:
+
+   * Use a **table** visual.
+   * Add **Ofsted Grade Rating** (from DimOfstedRatings) and **Avg Number of Students** (measure).
+3. Confirm that changing slicers like *Type of Education* or *Ofsted Phase* updates your results — proving relationships work.
+
+---
+
+### ✅ **Result**
+
+You now have a **fully related star-schema model**:
+
+* A single **Fact** table (*OfstedFact*) in the centre
+* Surrounded by connected **Dimension** tables that describe context (Phase, Education Type, LA, etc.)
+
+This model structure is efficient, easy to understand, and ready for **DAX measures** and interactive **Power BI reports**.
+
+---
+
+### 🧠 **Teaching Notes**
+
+* Emphasise that **relationships** enable cross-filtering and ensure measures aggregate correctly.
+* Reinforce **star schema best practice**: one Fact table, many connected Dimensions.
+* Encourage learners to sketch or screenshot their completed data model for future reference.
+
+
