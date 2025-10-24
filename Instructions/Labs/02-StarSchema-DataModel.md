@@ -1,5 +1,104 @@
 
 
+## 🧩 Major Step: Creating the *DimOfstedPhase* Dimension Table
+
+### **Objective**
+
+Students will create a dimension table listing all unique Ofsted phases (e.g., Primary, Secondary, Special).
+This exercise helps them understand how to create dimension tables with surrogate keys from a flat file source.
+
+---
+
+### **Step-by-Step Instructions**
+
+#### 🪜 Step 1: Load the CSV file
+
+1. In Power BI Desktop, go to **Home ▸ Get Data ▸ Text/CSV**.
+2. Browse to:
+
+   ```
+   C:\Users\GethynEllis\Downloads\Management_information_-_state-funded_schools_-_latest_inspections_as_at_30_June_2025.csv
+   ```
+3. Select **Transform Data** to open the file in Power Query.
+
+---
+
+#### 🪜 Step 2: Promote Headers
+
+* In the **Home** tab, click **Use First Row as Headers** to make the first row your column names.
+
+---
+
+#### 🪜 Step 3: Set Column Data Types
+
+* Ensure that the column **Ofsted phase** is set to **Text** type.
+  (If not, click the column header ▸ choose **Transform ▸ Data Type ▸ Text**.)
+
+---
+
+#### 🪜 Step 4: Keep Only the Required Column
+
+* Select the **Ofsted phase** column.
+* Go to **Home ▸ Remove Columns ▸ Remove Other Columns**.
+  *(This keeps only the relevant field for your dimension.)*
+
+---
+
+#### 🪜 Step 5: Remove Duplicate Values
+
+* With the **Ofsted phase** column selected, go to **Home ▸ Remove Rows ▸ Remove Duplicates**.
+  *(This ensures each phase only appears once.)*
+
+---
+
+#### 🪜 Step 6: Add a Surrogate Key
+
+* Go to **Add Column ▸ Index Column ▸ From 1**.
+  *(This adds a numeric key starting at 1 — used as the surrogate key for the dimension table.)*
+
+---
+
+#### 🪜 Step 7: Rename the Index Column
+
+* Double-click the new column header `Index` and rename it to:
+
+  ```
+  KeyOfstedPhase
+  ```
+
+---
+
+#### 🪜 Step 8: Rename the Query
+
+* In the **Query Settings** pane (right-hand side), change the query **Name** to:
+
+  ```
+  DimOfstedPhase
+  ```
+
+---
+
+### ✅ **Result**
+
+You now have a dimension table like this:
+
+| Ofsted phase | KeyOfstedPhase |
+| ------------ | -------------- |
+| Primary      | 1              |
+| Nursery      | 2              |
+| PRU          | 3              |
+| Secondary    | 4              |
+| Special      | 5              |
+
+---
+
+### 🧠 Teaching Notes
+
+* The **Index Column** is used to generate a **surrogate key** for joining to fact tables.
+* Dimension tables hold **descriptive, categorical data** used in slicers and filters.
+* This table will later relate to the **OfstedFact** table on the `Ofsted phase` column.
+
+
 ## 🧩 Major Step: Creating the *DimTypeofEducation* Dimension Table
 
 ### **Objective**
