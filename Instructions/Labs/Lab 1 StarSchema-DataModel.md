@@ -167,6 +167,8 @@ Your final table should look like this:
 | 5                  | Unknown – Awaiting rating |
 | 6                  | Not Judged                |
 
+<img width="444" height="286" alt="image" src="https://github.com/user-attachments/assets/6bd14836-0cb3-4337-b7c9-2ed92fcf5cab" />
+
 ---
 
 ### 🧠 Teaching Notes
@@ -269,6 +271,8 @@ You’ll have a dimension table like this:
 | Hampstead and Highgate           | 3              |
 | Greenwich and Woolwich           | 4              |
 | …                                | …              |
+
+<img width="798" height="936" alt="image" src="https://github.com/user-attachments/assets/179d29e3-059a-49d3-b065-2974fa431237" />
 
 ---
 
