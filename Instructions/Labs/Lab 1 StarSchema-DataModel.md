@@ -5,10 +5,10 @@
 In this lab, you will design and build a **dimensional data model** in Power BI using data from Ofsted school inspections.
 By the end of this exercise, you will have:
 
-✅ Imported and cleaned data from multiple sources
-✅ Created several **dimension tables** (lookup tables)
-✅ Built a central **Fact table**
-✅ Established **relationships** between these tables to form a **star schema model**
+- Imported and cleaned data from multiple sources
+- Created several **dimension tables** (lookup tables)
+- Built a central **Fact table**
+- Established **relationships** between these tables to form a **star schema model**
 
 This model will form the foundation for your DAX and Power BI reporting labs.
 
